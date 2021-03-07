@@ -67,4 +67,4 @@ async def ping(ctx):
 
 
 #token
-bot.run("ODE3NDE0NDkzMTQzMTcxMTIz.YEJKkQ.rScLMAXsFvbFDQWmZQXB7Jh2j_U")
+bot.run("")
