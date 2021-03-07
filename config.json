@@ -1,0 +1,22 @@
+{
+    "config": {
+        "token": ""
+    },
+    "shop": [
+        {
+            "name": "Watch",
+            "price": 100,
+            "description": "Time"
+        },
+        {
+            "name": "Laptop",
+            "price": 1000,
+            "description": "Work"
+        },
+        {
+            "name": "PC",
+            "price": 10000,
+            "description": "Gaming"
+        }
+    ]
+}

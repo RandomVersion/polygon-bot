@@ -9,23 +9,19 @@ from discord.embeds import Embed
 from discord.ext import commands, tasks
 from discord.utils import get
 
-
+config = json.loads(open("config.json", "r").read())
 bot = commands.Bot(command_prefix=">")
 
 bot.remove_command('help')
 
-mainshop = [{"name":"Watch","price":100,"description":"Time"},
-            {"name":"Laptop","price":1000,"description":"Work"},
-            {"name":"PC","price":10000,"description":"Gaming"}]
-
+mainshop = config['shop']
 
 #events
-
 @bot.event
 async def on_ready():
     change_staus.start()
     print('♦═════════════════════════════════════════════════♦')
-    print('        • We have logged in as {0.user}•'.format(bot))
+    print(f'        • We have logged in as {bot.user}•')
     print('             • Polygon bot is online •')
     print('  • The log file is located at discord.log •')
     print('♦═════════════════════════════════════════════════♦')
@@ -94,7 +90,6 @@ async def beg(ctx):
 
     with open("mainbank.json","w") as f:
         json.dump(users,f)
-
 
 @bot.command()
 async def withdraw(ctx,amount = None):
@@ -458,4 +453,5 @@ async def buy_this(user,item_name,amount):
     return [True,"Worked"]
 
 #token
-bot.run("")
+if __name__ == '__main__':
+    bot.run(config['config']['token'])
