@@ -1,6 +1,5 @@
 import discord
 import logging
-import asyncio
 import random
 import json
 import os
