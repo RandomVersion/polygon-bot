@@ -24,10 +24,9 @@ async def on_ready():
     print('♦═════════════════════════════════════════════════♦')
 
 
-@tasks.loop(seconds=60)
+@tasks.loop(seconds=config['config']['status']['delay'])
 async def change_staus():
-    status = ['Polygon stock market', 'Poly-gone',
-              'hi polugo n donute', 'Super Polygon 64']
+    status = config['config']['status']['text']
     await bot.change_presence(activity=discord.Game(random.choice(status)))
 
 # commands

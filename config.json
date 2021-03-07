@@ -1,6 +1,15 @@
 {
     "config": {
-        "token": ""
+        "token": "",
+        "status": {
+            "text": [
+                "Polygon stock market",
+                "Poly-gone",
+                "hi polugo n donute",
+                "Super Polygon 64"
+            ],
+            "delay": 60
+        }
     },
     "shop": [
         {
