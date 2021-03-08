@@ -35,6 +35,31 @@
             "name": "PC",
             "price": 10000,
             "description": "Gaming"
+        },
+        {
+            "name": "Polygon-crystal",
+            "price": 25000,
+            "description": "The Polygon crystal"
+        },
+        {
+            "name": "Stock",
+            "price": 1000,
+            "description": "Changes price every day!"
+        },
+        {
+            "name": "PolyCoin",
+            "price": 10,
+            "description": "Found in the back alleys."
+        },
+        {
+            "name": "Polygon-talisman",
+            "price": 5000,
+            "description": "Used to get more polygons!"
+        },
+        {
+            "name": "Diamond-pickaxe",
+            "price": 2500,
+            "description": "Use it to mine obsidian and blocks quicker!"
         }
     ]
 }
