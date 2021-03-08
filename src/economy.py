@@ -84,7 +84,7 @@ async def beg(ctx):
 
     user = ctx.author
 
-    earnings = random.randrange(1, 100)
+    earnings = random.randrange(1, 500)
 
     await ctx.send(f"Someone gave you {earnings} polygons!")
 
@@ -259,7 +259,7 @@ async def leaderboard(ctx, x=1):
 
 @bot.command()
 async def shop(ctx):
-    em = discord.Embed(title="Shop")
+    em = discord.Embed(title="Shop", color=discord.Color.purple())
 
     for item in mainshop:
         name = item["name"]
@@ -303,7 +303,7 @@ async def inventory(ctx):
     except:
         inv = []
 
-    em = discord.Embed(title="Inventory")
+    em = discord.Embed(title=f"{ctx.author.name}'s Inventory", color=discord.Color.purple())
     for item in inv:
         name = item["item"]
         amount = item["amount"]
