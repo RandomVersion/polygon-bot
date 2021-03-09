@@ -8,8 +8,9 @@ from discord.embeds import Embed
 from discord.ext import commands, tasks
 from discord.utils import get
 
+intents = discord.Intents.all()
 config = json.loads(open("./config/config.json", "r").read())
-bot = commands.Bot(command_prefix=">")
+bot = commands.Bot(command_prefix='>', intents=intents)
 bot.remove_command('help')
 mainshop = config['shop']
 
@@ -227,9 +228,8 @@ async def rob(ctx, member: discord.Member):
 
     await ctx.send(f"You robbed <@{member.id}> and got {earnings} polygons!")
 
-
-@bot.command(aliases=["lb"])
-async def leaderboard(ctx, x=1):
+@bot.command(aliases = ["lb"])
+async def leaderboard(ctx,x = 10):
     users = await get_bank_data()
     leader_board = {}
     total = []
@@ -239,23 +239,21 @@ async def leaderboard(ctx, x=1):
         leader_board[total_amount] = name
         total.append(total_amount)
 
-    total = sorted(total, reverse=True)
+    total = sorted(total,reverse=True)  
 
-    em = discord.Embed(title=f"Top {x} Richest People",
-                       description="This is decided on the basis of raw money in the bank and wallet", color=discord.Color(0xfa43ee))
+    em = discord.Embed(title = f"Top {x} Richest People" , description = "This is decided on the basis of raw money in the bank and wallet",color = discord.Color.purple())
     index = 1
     for amt in total:
         id_ = leader_board[amt]
         member = bot.get_user(id_)
         name = member.name
-        em.add_field(name=f"{index}. {name}", value=f"{amt}",  inline=False)
+        em.add_field(name = f"{index}. {name}" , value = f"{amt}",  inline = False)
         if index == x:
             break
         else:
             index += 1
 
-    await ctx.send(embed=em)
-
+    await ctx.send(embed = em)
 
 @bot.command()
 async def shop(ctx):
@@ -292,7 +290,7 @@ async def buy(ctx, item, amount=1):
     await ctx.send(f"You just bought {amount} {item}")
 
 
-@bot.command()
+@bot.command(aliases=["inv"])
 async def inventory(ctx):
     await open_account(ctx.author)
     user = ctx.author
