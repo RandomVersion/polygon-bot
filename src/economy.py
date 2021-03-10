@@ -51,7 +51,7 @@ async def test(ctx):
 
     user = ctx.author
 
-    earnings = random.randrange(10, 100)
+    earnings = random.randrange(1, 250)
 
     await ctx.send(f"Someone gave you {earnings} polygons!")
 
