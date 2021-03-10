@@ -43,7 +43,7 @@
         },
         {
             "name": "Stock",
-            "price": 4600,
+            "price": 5000,
             "description": "Changes price every day!"
         },
         {
