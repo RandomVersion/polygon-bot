@@ -3,14 +3,14 @@ import logging
 import random
 import json
 import os
+import re 
 from discord import colour
 from discord.embeds import Embed
 from discord.ext import commands, tasks
 from discord.utils import get
 
-intents = discord.Intents.all()
 config = json.loads(open("./config/config.json", "r").read())
-bot = commands.Bot(command_prefix='>', intents=intents)
+bot = commands.Bot(command_prefix='>')
 bot.remove_command('help')
 mainshop = config['shop']
 
@@ -22,6 +22,7 @@ async def on_ready():
     print(f'        • We have logged in as {bot.user}•')
     print('             • Polygon bot is online •')
     print('  • The log file is located at discord.log •')
+    print('                 • Sigma#8214 •')
     print('♦═════════════════════════════════════════════════♦')
 
 
@@ -291,10 +292,33 @@ async def buy(ctx, item, amount=1):
 
 
 @bot.command(aliases=["inv"])
-async def inventory(ctx):
+async def inventory(ctx, message = None):
+    users = await get_bank_data()
+
+    if message != None:
+        regexFind = re.findall("<@!([[0-9]*)>", message)
+        if len(regexFind) < 1:
+            ctx.send(embed = discord.Embed(title="Unknown User", color=discord.Color.red()))
+            return
+        userID = re.findall("([[0-9]*)", regexFind[0])[0]
+
+        try:
+            inv = users[userID]["inventory"] if users[userID] != None else []
+        except:
+            inv = []
+
+        em = discord.Embed(title=f"Inventory", color=discord.Color.purple())
+        for item in inv:
+            name = item["item"]
+            amount = item["amount"]
+
+            em.add_field(name=name, value=amount)
+
+        await ctx.send(embed=em)
+        return
+
     await open_account(ctx.author)
     user = ctx.author
-    users = await get_bank_data()
 
     try:
         inv = users[str(user.id)]["inventory"]
