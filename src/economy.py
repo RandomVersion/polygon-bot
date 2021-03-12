@@ -62,20 +62,26 @@ async def test(ctx):
         json.dump(users, f)
 
 
-@bot.command()
-async def balance(ctx):
+@bot.command(aliases = ["bal"])
+async def balance(ctx , member: discord.Member = None):
+    if not member:  
+        member = ctx.message.author
+
     await open_account(ctx.author)
-    user = ctx.author
+    await open_account(member)
+
+    user = member
+
     users = await get_bank_data()
 
     wallet_amt = users[str(user.id)]["wallet"]
     bank_amt = users[str(user.id)]["bank"]
 
     em = discord.Embed(
-        title=f"{ctx.author.name}'s balance", color=discord.Color.purple())
+        title = f"{member.name}'s balance" , color=discord.Color.purple())
     em.add_field(name="Wallet balance", value=wallet_amt)
     em.add_field(name="Bank balance", value=bank_amt)
-    await ctx.send(embed=em)
+    await ctx.send(embed = em)
 
 
 @bot.command()
@@ -86,7 +92,7 @@ async def beg(ctx):
 
     user = ctx.author
 
-    earnings = random.randrange(1, 500)
+    earnings = random.randrange(1, 250)
 
     await ctx.send(f"Someone gave you {earnings} polygons!")
 
@@ -96,7 +102,7 @@ async def beg(ctx):
         json.dump(users, f)
 
 
-@bot.command()
+@bot.command(aliases = ["with"])
 async def withdraw(ctx, amount=None):
     await open_account(ctx.author)
 
@@ -122,7 +128,7 @@ async def withdraw(ctx, amount=None):
     await ctx.send(f"You withdrew {amount} polygons!")
 
 
-@bot.command()
+@bot.command(aliases = ["dep"])
 async def deposit(ctx, amount=None):
     await open_account(ctx.author)
 
