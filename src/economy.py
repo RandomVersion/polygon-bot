@@ -9,8 +9,9 @@ from discord.embeds import Embed
 from discord.ext import commands, tasks
 from discord.utils import get
 
+intents = discord.Intents.all()
 config = json.loads(open("./config/config.json", "r").read())
-bot = commands.Bot(command_prefix='>')
+bot = commands.Bot(command_prefix='>', intents=intents)
 bot.remove_command('help')
 mainshop = config['shop']
 
@@ -92,7 +93,7 @@ async def beg(ctx):
 
     user = ctx.author
 
-    earnings = random.randrange(1, 250)
+    earnings = random.randrange(1, 750)
 
     await ctx.send(f"Someone gave you {earnings} polygons!")
 
@@ -165,7 +166,7 @@ async def pay(ctx, member: discord.Member, amount=None):
 
     bal = await update_bank(ctx.author)
     if amount == "all":
-        amount = bal[0]
+        amount = bal[1]
 
     amount = int(amount)
     if amount > bal[1]:
@@ -224,7 +225,7 @@ async def rob(ctx, member: discord.Member):
 
     bal = await update_bank(member)
 
-    if bal[0] < 100:
+    if bal[0] < 5000:
         await ctx.send("It's not worth to rob this guy!")
         return
 
