@@ -7,6 +7,7 @@
                 "Poly-gone",
                 "hi polugo n donute",
                 "Super Polygon 64",
+                "Random lé version",
                 "Sigma Is Cool"
             ],
             "delay": 60
@@ -60,6 +61,11 @@
             "name": "Diamond-pickaxe",
             "price": 5000,
             "description": "Use it to mine obsidian and blocks quicker!"
+        },
+        {
+            "name": "brick",
+            "price": 1,
+            "description": "Brick stonks"
         }
     ]
 }
